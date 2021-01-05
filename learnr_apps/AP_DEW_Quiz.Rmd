@@ -1,0 +1,48 @@
+---
+output: 
+  html_document:
+    includes:
+      in_header: TheHTML.html
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+``` {r DEW_Quiz, echo = FALSE}
+quiz(caption = "Data Exploration and Wrangling Exercise",
+  question("When using machine learning for prediction, what is the name of the variable that we want to predict?",
+    answer("Feature variable", message = "Features (or predictor variables) are variables used to predict the outcome variable."),
+    answer("Predictor variable", message = "Features (or predictor variables) are variables used to predict the outcome variable."),
+    answer("Outcome variable", correct = TRUE),
+    allow_retry = TRUE,
+    random_answer_order = TRUE
+  ),
+  question("Suppose in our data set, there is a variable that is numeric IDs. These IDs are unique but do not necessarily contain information regarding orders, i.e., the ordering of the numbers is not of our interest. What data class is the most appropriate for this variable?",
+    answer("Double `<dbl>`", message = "Recall that order is not of our interest. Try again."),
+    answer("Integer `<int>`", message = "Recall that order is not of our interest. Try again."),
+    answer("Character `<chr>`", message = "Character variables have values that are character strings, such as words or phrases."),
+    answer("Factor `<fct>`", correct = TRUE, message = "A factor is something that has unique levels but there is no appreciable order to the levels."),
+    allow_retry = TRUE,
+    random_answer_order = TRUE
+  ),
+  question("In prediction analyses, which one of the following is NOT the reason why we need to care about whether the variables are correlated?",
+    answer("To avoid the problem of multicollinearity when using a linear regression model."),
+    answer("To avoid redundant variables that may cause unnecessary noise."),
+    answer("Correlation can make it difficult to interpret what variables are actually predictive."),
+    answer("Having highly correlated variables makes our prediction more accurate.", correct = TRUE, message = "To review this topic, refer to the [\"Evaluate correlation\"](https://www.opencasestudies.org/ocs-bp-air-pollution/#:~:text=In%20prediction%20analyses,should%20we%20care%20about%20this?) section of this case study."),
+    allow_retry = TRUE,
+    random_answer_order = TRUE
+  ),
+  question("Taking a log transformation can account for extreme value ranges of our variables.",
+    answer("False"),
+    answer("True", correct = TRUE),
+    allow_retry = TRUE,
+    random_answer_order = TRUE
+  )
+)
+```
+
+<div data-iframe-height></div>

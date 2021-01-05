@@ -1,0 +1,41 @@
+---
+output: 
+  html_document:
+    includes:
+      in_header: TheHTML.html
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(tidyverse)
+library(rnaturalearth)
+knitr::opts_chunk$set(echo = FALSE)
+# Recall how we created a plot that is mostly limited to the outline of the US. According to [Wikipedia](https://en.wikipedia.org/wiki/List_of_extreme_points_of_Canada), latitude and longitude bounds of mainland Canada are about: 
+# top = 72 # north lat
+# left = -142 # west long
+# right = -55 # east long
+# bottom = 41# south lat
+# Create a plot that is mostly limited to the outline of Canada
+```
+
+```{r DV_E1, exercise=TRUE}
+world <- ne_countries(scale = "medium", returnclass = "sf")
+ggplot(data = world) +
+```
+
+```{r DV_E1-hint-1}
+world <- ne_countries(scale = "medium", returnclass = "sf")
+ggplot(data = world) +
+    geom_sf()
+```
+
+```{r DV_E1-hint-2}
+world <- ne_countries(scale = "medium", returnclass = "sf")
+ggplot(data = world) +
+    geom_sf() +
+    coord_sf(xlim = c(-142, -55), ylim = c(41, 72), 
+             expand = FALSE)
+```
+ 
+<div data-iframe-height></div>

@@ -1,0 +1,62 @@
+---
+output: 
+  html_document:
+    includes:
+      in_header: TheHTML.html
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+``` {r ML_Quiz, echo = FALSE}
+quiz(caption = "Machine Learning Exercise",
+  question("To solve a standard machine learning problem we need: (check all that apply)",
+    answer("A data set to train from.", correct = TRUE),
+    answer("An algorithm or set of algorithms to try $f$. Note: $\\hat Y = f(\\bf{X})$ where $\\hat Y$ is the predicted outcome and $\\bf{X}$ is a vector of predictor variables.", correct = TRUE),
+    answer("A distance metric $d$ for measuring how close $Y$ is to $\\hat Y$. Note: $Y$ is the observed outcome.", correct = TRUE),
+    answer("A definition of what a \"good\" distance is.", correct = TRUE),
+    allow_retry = TRUE,
+    random_answer_order = FALSE
+  ),
+  question("Creating a recipe using the `recipes` package allows us to: (check all that apply)",
+    answer("specify what variables are to be used in the model", correct = TRUE),
+    answer("specify any pre-processing steps", correct = TRUE),
+    answer("execute the pre-processing steps and create the data frame of predictors", message = "Simply creating a recipe does not execute pre-processing steps. See the [Running the pre-processing](https://www.opencasestudies.org/ocs-bp-air-pollution/#Running_the_pre-processing) section."),
+    allow_retry = TRUE,
+    random_answer_order = TRUE
+  ),
+  question("When assigning variable roles, what function could we use? (check all that apply)",
+    answer("`rsample::initial_split()`", message = "We used `rsample::initial_split()` function to split the data into training and testing data."),
+    answer("`stats::formula()`", message = "We used `formula()` function to view the formula of the recipe."),
+    answer("`recipes::recipe()`", correct = TRUE, message = "This is used with formula notation."),
+    answer("`recipes::update_role()`", correct = TRUE),
+    allow_retry = TRUE,
+    random_answer_order = TRUE
+  ),
+  question("One-hot encoding means simply encoding our categorical variables numerically.",
+    answer("True", message = "Recall that numeric assignments can be interpreted by algorithms as having a particular rank or order. We use one-hot encoding to avoid this problem. Try again."),
+    answer("False", correct = TRUE, message = "In one-hot encoding, [binary numbers](https://en.wikipedia.org/wiki/Binary_number) made of 1s and 0s are used to arbitrarily assign a numeric value that has no apparent order."),
+    allow_retry = TRUE,
+    random_answer_order = TRUE
+  ),
+  question("Which one of the following functions was used to return a data frame with coefficients from our machine learning model (one row per coefficient)?",
+    answer("`workflows::workflow()`", message = "`workflows::workflow()` was used to create a workflow."),
+    answer("`vip::vip()`", message = "`vip::vip()` was used to view the top contributing variables in our model."),
+    answer("`broom::tidy()`", correct = TRUE),
+    allow_retry = TRUE,
+    random_answer_order = TRUE
+  ),
+  question("V-fold cross validation: (check all that apply)",
+    answer("uses $v-1$ folds of the training data to iteratively train the model", correct = TRUE),
+    answer("uses the one fold that was not used to fit to test the performance of the model each time", correct = TRUE, message = "See [here](https://www.opencasestudies.org/ocs-bp-air-pollution/#:~:text=Once%20the%20folds%20are%20created,re-samples%20that%20we%20created:) for details."),
+    answer("uses a fold of the testing data from using the funtion `initial_split()` to interatively evaluate the model performance", message = "Remember that the testing data is not used in any part of training. See [here](https://www.opencasestudies.org/ocs-bp-air-pollution/#:~:text=Once%20the%20folds%20are%20created,re-samples%20that%20we%20created:) for details."),
+    allow_retry = TRUE,
+    random_answer_order = TRUE
+  )
+)
+```
+
+<div data-iframe-height></div>

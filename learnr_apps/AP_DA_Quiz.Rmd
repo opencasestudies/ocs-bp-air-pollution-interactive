@@ -1,0 +1,32 @@
+---
+output: 
+  html_document:
+    includes:
+      in_header: TheHTML.html
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+``` {r DEW_Quiz, echo = FALSE}
+quiz(caption = "Data Analysis Exercise",
+  question("Which one of the arguments of the `parsnip::rand_forest()` function  defines the number of predictor variables that will be randomly sampled at each split when creating the tree models?",
+    answer("`min_n`", message = "`min_n` defines the minimum number of data points in a node that are required for the node to be split further."),
+    answer("`trees`", message = "`trees` defines the number of trees in the ensemble."),
+    answer("`mtry`", correct = TRUE),
+    allow_retry = TRUE,
+    random_answer_order = TRUE
+  ),
+  question("Using the `last_fit()` function of the `tune` package requires pre-processing steps.",
+    answer("True", message = "It does not require pre-processing steps."),
+    answer("False", correct = TRUE, message = "It does not require pre-processing steps."),
+    allow_retry = TRUE,
+    random_answer_order = TRUE
+  )
+)
+```
+
+<div data-iframe-height></div>

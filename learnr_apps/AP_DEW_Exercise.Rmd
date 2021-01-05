@@ -1,0 +1,37 @@
+---
+output: 
+  html_document:
+    includes:
+      in_header: TheHTML.html
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(tidyverse)
+library(GGally)
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r DEW_Exercise1-setup}
+# Suppose we have a dataframe called `mydata`. There are five variables in this dataframe: `var1`, `var2`, `var3`, `var4`, and `var5`. Try to come up with the code for creating the plot called `myplot`. This plot visualizes correlations between variables. (Hint: start from `mydata` and use a function from the GGally package)
+set.seed(123)
+var1 <- runif(20, min = 0, max = 5)
+var2 <- var1 + 1
+var3 <- (-1) * var1
+var4 <- rnorm(20, mean = 2.5, sd = 2)
+var5 <- 2 * var4
+mydata <- data.frame(var1, var2, var3, var4, var5)
+myplot <- mydata %>%
+  ggcorr(palette = "RdBu", label = TRUE)
+```
+
+```{r DEW_Exercise1, exercise=TRUE, exercise.eval = TRUE}
+myplot
+```
+
+```{r DEW_Exercise1-solution}
+mydata %>%
+  ggcorr(palette = "RdBu", label = TRUE)
+```
+<div data-iframe-height></div>
