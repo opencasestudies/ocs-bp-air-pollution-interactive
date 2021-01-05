@@ -4,7 +4,7 @@ css: style.css
 output:
   html_document:
     includes:
-       in_header: GA_Script.Rhtml
+      in_header: header.html
     self_contained: yes
     code_download: yes
     highlight: tango
@@ -16,7 +16,6 @@ output:
     toc: yes
   word_document:
     toc: yes
-
 ---
 <style>
 #TOC {
@@ -857,6 +856,12 @@ Indeed this increased the correlation, but variables from each of these categori
 
 Now that we have a sense of what our data are, we can get started with building a machine learning model to predict air pollution. 
 
+<!---AP_DEW_Quiz-->
+
+<iframe style="margin:0 auto; min-width: 100%;" id="AP_DEW_QuizIframe" class="interactive" src="https://rsconnect.biostat.jhsph.edu/OCS_AP_DEW_Quiz/" scrolling="no" frameborder="no"></iframe>
+
+<!---------------->
+
 # **What is machine learning?**  {#whatisml}
 ***
 
@@ -1157,13 +1162,7 @@ simple_rec <-recipe(train_pm) %>%
 simple_rec
 ```
 
-If we want to take a look at our formula from our recipe, we can do use the `formula()` function of the `stats` package.
-
-```{r}
-formula(simple_rec)
-```
-
-We can also view our recipe in more detail using the base `summary()` function.
+We can view our recipe in more detail using the base `summary()` function.
 
 ```{r}
 summary(simple_rec)
@@ -2764,5 +2763,6 @@ We would like to acknowledge [Roger Peng](http://www.biostat.jhsph.edu/~rpeng/),
 
 We would also like to acknowledge the [Bloomberg American Health Initiative](https://americanhealth.jhu.edu/) for funding this work. 
 
-
-<script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=080808&w=a&t=tt&d=7YT-EDGa4MUwQXSQxqfv9Nd9Nt852b7plGdS6UQJO1Q&co=ffffff&cmo=3acc3a&cmn=ff5353&ct=808080'></script>
+<script>
+  iFrameResize({}, ".interactive");
+</script>
