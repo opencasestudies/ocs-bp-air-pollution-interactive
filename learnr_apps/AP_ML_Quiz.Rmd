@@ -12,7 +12,7 @@ knitr::opts_chunk$set(echo = FALSE)
 ```
 
 ``` {r ML_Quiz, echo = FALSE}
-quiz(caption = "Machine Learning Exercise",
+quiz(caption = "",
   question("To solve a standard machine learning problem we need: (check all that apply)",
     answer("A data set to train from.", correct = TRUE),
     answer("An algorithm or set of algorithms to try $f$. Note: $\\hat Y = f(\\bf{X})$ where $\\hat Y$ is the predicted outcome and $\\bf{X}$ is a vector of predictor variables.", correct = TRUE),

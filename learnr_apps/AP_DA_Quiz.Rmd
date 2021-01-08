@@ -11,8 +11,8 @@ library(learnr)
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-``` {r DEW_Quiz, echo = FALSE}
-quiz(caption = "Data Analysis Exercise",
+``` {r DA_Quiz, echo = FALSE}
+quiz(caption = "",
   question("Which one of the arguments of the `parsnip::rand_forest()` function  defines the number of predictor variables that will be randomly sampled at each split when creating the tree models?",
     answer("`min_n`", message = "`min_n` defines the minimum number of data points in a node that are required for the node to be split further."),
     answer("`trees`", message = "`trees` defines the number of trees in the ensemble."),

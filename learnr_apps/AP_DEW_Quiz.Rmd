@@ -12,7 +12,7 @@ knitr::opts_chunk$set(echo = FALSE)
 ```
 
 ``` {r DEW_Quiz, echo = FALSE}
-quiz(caption = "Data Exploration and Wrangling Exercise",
+quiz(caption = "",
   question("When using machine learning for prediction, what is the name of the variable that we want to predict?",
     answer("Feature variable", message = "Features (or predictor variables) are variables used to predict the outcome variable."),
     answer("Predictor variable", message = "Features (or predictor variables) are variables used to predict the outcome variable."),

@@ -19,18 +19,18 @@ knitr::opts_chunk$set(echo = FALSE)
 # Create a plot that is mostly limited to the outline of Canada
 ```
 
-```{r DV_E1, exercise=TRUE}
+```{r DV_Exercise1, exercise=TRUE}
 world <- ne_countries(scale = "medium", returnclass = "sf")
 ggplot(data = world) +
 ```
 
-```{r DV_E1-hint-1}
+```{r DV_Exercise1-hint-1}
 world <- ne_countries(scale = "medium", returnclass = "sf")
 ggplot(data = world) +
     geom_sf()
 ```
 
-```{r DV_E1-hint-2}
+```{r DV_Exercise1-hint-2}
 world <- ne_countries(scale = "medium", returnclass = "sf")
 ggplot(data = world) +
     geom_sf() +
