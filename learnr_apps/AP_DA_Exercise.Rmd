@@ -1,0 +1,241 @@
+---
+output: 
+  html_document:
+    includes:
+      in_header: TheHTML.html
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(tidymodels)
+knitr::opts_chunk$set(echo = FALSE)
+# `mtcars`is a built-in dataset in R.  In this exercise, build a machine learning model that predicts `mpg` (miles/(US) gallon) using variables `cyl` (number of cylinders), `hp` (gross horsepower), `wt` (weight (1000 lbs)), `gear` (number of forward gears), and `carb` (number of carburetors). Click [here](https://www.rdocumentation.org/packages/datasets/versions/3.6.2/topics/mtcars) to see documentation of `mtcars`. 
+# Notes: 
+# *Refer to the [`tidymodels` Steps](https://www.opencasestudies.org/ocs-bp-air-pollution-interactive/#tidymodels_Steps) section. 
+# *Use a linear regression model.
+# *Use "lm" as computational engine.
+```
+
+```{r DA_E, exercise=TRUE, exercise.lines = 38, eval=FALSE}
+# Replace the underscores("_") with your code with one character per "_".
+set.seed(1234)  # "1234" can be replaced by any seed that you like
+ct <- as_tibble(mtcars)
+# Step 1: Split into testing and training data
+ct_split <- rsample::_____________(data = ct)
+train_ct <- rsample::training(________)
+test_ct <- rsample::testing(________)
+# Step 2: Create recipe and assign variable roles
+rec <- train_ct %>%
+  recipes::______(___ ~ ___ + __ + __ + ____ + ____)
+# Step 3: Specify model, engine, and mode
+ct_model <- parsnip::__________() # Use a linear regression model
+lm_ct_model <- 
+  ct_model  %>%
+  parsnip::__________("lm") %>% # Use "lm" computational engine
+  set_mode("regression")
+# Step 4: Create workflow, add recipe, add model
+ct_wflow <-workflows::workflow() %>%
+  workflows::add_recipe(___) %>%
+  workflows::_________(lm_ct_model)
+# Step 5: Fit workflow
+ct_wflow_fit <- parsnip::___(________, data = train_ct)
+# Step 6: Get predictions
+mpg_pred_train <- 
+  _______(ct_wflow_fit, train_ct) %>%
+  bind_cols(train_ct %>% select(mpg))
+# Step 7: Use predictions to get performance metrics
+# It might be helpful to look at "mpg_pred_train"
+yardstick::metrics(mpg_pred_train, 
+                 truth = ___, estimate = _____)
+# Now that we have built the model, let's see what the performance is with the test data
+ct_test_fit <- parsnip::___(ct_wflow, data = _______)
+mpg_pred_test <- 
+  predict(___________, _______) %>%
+  bind_cols(_______ %>% select(mpg))
+yardstick::metrics(mpg_pred_test, 
+                 truth = ___, estimate = _____)
+```
+
+```{r DA_E-hint-1}
+set.seed(1234)
+ct <- as_tibble(mtcars)
+# Step 1: Split into testing and training data
+ct_split <- rsample::initial_split(data = ct)
+train_ct <- rsample::training(ct_split)
+test_ct <- rsample::testing(ct_split)
+```
+
+```{r DA_E-hint-2}
+set.seed(1234)
+ct <- as_tibble(mtcars)
+# Step 1: Split into testing and training data
+ct_split <- rsample::initial_split(data = ct)
+train_ct <- rsample::training(ct_split)
+test_ct <- rsample::testing(ct_split)
+# Step 2: Create recipe and assign variable roles
+rec <- train_ct %>%
+  recipes::recipe(mpg ~ cyl + hp + wt + gear + carb)
+```
+
+```{r DA_E-hint-3}
+set.seed(1234)
+ct <- as_tibble(mtcars)
+# Step 1: Split into testing and training data
+ct_split <- rsample::initial_split(data = ct)
+train_ct <- rsample::training(ct_split)
+test_ct <- rsample::testing(ct_split)
+# Step 2: Create recipe and assign variable roles
+rec <- train_ct %>%
+  recipes::recipe(mpg ~ cyl + hp + wt + gear + carb)
+# Step 3: Specify model, engine, and mode
+ct_model <- parsnip::linear_reg()
+lm_ct_model <- 
+  ct_model  %>%
+  parsnip::set_engine("lm") %>%
+  set_mode("regression")
+```
+
+```{r DA_E-hint-4}
+set.seed(1234)
+ct <- as_tibble(mtcars)
+# Step 1: Split into testing and training data
+ct_split <- rsample::initial_split(data = ct)
+train_ct <- rsample::training(ct_split)
+test_ct <- rsample::testing(ct_split)
+# Step 2: Create recipe and assign variable roles
+rec <- train_ct %>%
+  recipes::recipe(mpg ~ cyl + hp + wt + gear + carb)
+# Step 3: Specify model, engine, and mode
+ct_model <- parsnip::linear_reg()
+lm_ct_model <- 
+  ct_model  %>%
+  parsnip::set_engine("lm") %>%
+  set_mode("regression")
+# Step 4: Create workflow, add recipe, add model
+ct_wflow <-workflows::workflow() %>%
+  workflows::add_recipe(rec) %>%
+  workflows::add_model(lm_ct_model)
+```
+
+```{r DA_E-hint-5}
+set.seed(1234)
+ct <- as_tibble(mtcars)
+# Step 1: Split into testing and training data
+ct_split <- rsample::initial_split(data = ct)
+train_ct <- rsample::training(ct_split)
+test_ct <- rsample::testing(ct_split)
+# Step 2: Create recipe and assign variable roles
+rec <- train_ct %>%
+  recipes::recipe(mpg ~ cyl + hp + wt + gear + carb)
+# Step 3: Specify model, engine, and mode
+ct_model <- parsnip::linear_reg()
+lm_ct_model <- 
+  ct_model  %>%
+  parsnip::set_engine("lm") %>%
+  set_mode("regression")
+# Step 4: Create workflow, add recipe, add model
+ct_wflow <-workflows::workflow() %>%
+  workflows::add_recipe(rec) %>%
+  workflows::add_model(lm_ct_model)
+# Step 5: Fit workflow
+ct_wflow_fit <- parsnip::fit(ct_wflow, data = train_ct)
+```
+
+```{r DA_E-hint-6}
+set.seed(1234)
+ct <- as_tibble(mtcars)
+# Step 1: Split into testing and training data
+ct_split <- rsample::initial_split(data = ct)
+train_ct <- rsample::training(ct_split)
+test_ct <- rsample::testing(ct_split)
+# Step 2: Create recipe and assign variable roles
+rec <- train_ct %>%
+  recipes::recipe(mpg ~ cyl + hp + wt + gear + carb)
+# Step 3: Specify model, engine, and mode
+ct_model <- parsnip::linear_reg()
+lm_ct_model <- 
+  ct_model  %>%
+  parsnip::set_engine("lm") %>%
+  set_mode("regression")
+# Step 4: Create workflow, add recipe, add model
+ct_wflow <-workflows::workflow() %>%
+  workflows::add_recipe(rec) %>%
+  workflows::add_model(lm_ct_model)
+# Step 5: Fit workflow
+ct_wflow_fit <- parsnip::fit(ct_wflow, data = train_ct)
+# Step 6: Get predictions
+mpg_pred_train <- 
+  predict(ct_wflow_fit, train_ct) %>%
+  bind_cols(train_ct %>% select(mpg))
+```
+
+```{r DA_E-hint-7}
+set.seed(1234)
+ct <- as_tibble(mtcars)
+# Step 1: Split into testing and training data
+ct_split <- rsample::initial_split(data = ct)
+train_ct <- rsample::training(ct_split)
+test_ct <- rsample::testing(ct_split)
+# Step 2: Create recipe and assign variable roles
+rec <- train_ct %>%
+  recipes::recipe(mpg ~ cyl + hp + wt + gear + carb)
+# Step 3: Specify model, engine, and mode
+ct_model <- parsnip::linear_reg()
+lm_ct_model <- 
+  ct_model  %>%
+  parsnip::set_engine("lm") %>%
+  set_mode("regression")
+# Step 4: Create workflow, add recipe, add model
+ct_wflow <-workflows::workflow() %>%
+  workflows::add_recipe(rec) %>%
+  workflows::add_model(lm_ct_model)
+# Step 5: Fit workflow
+ct_wflow_fit <- parsnip::fit(ct_wflow, data = train_ct)
+# Step 6: Get predictions
+mpg_pred_train <- 
+  predict(ct_wflow_fit, train_ct) %>%
+  bind_cols(train_ct %>% select(mpg))
+# Step 7: Use predictions to get performance metrics
+yardstick::metrics(mpg_pred_train, 
+                 truth = mpg, estimate = .pred)
+```
+
+```{r DA_E-solution}
+set.seed(1234)
+ct <- as_tibble(mtcars)
+# Step 1: Split into testing and training data
+ct_split <- rsample::initial_split(data = ct)
+train_ct <- rsample::training(ct_split)
+test_ct <- rsample::testing(ct_split)
+# Step 2: Create recipe and assign variable roles
+rec <- train_ct %>%
+  recipes::recipe(mpg ~ cyl + hp + wt + gear + carb)
+# Step 3: Specify model, engine, and mode
+ct_model <- parsnip::linear_reg()
+lm_ct_model <- 
+  ct_model  %>%
+  parsnip::set_engine("lm") %>%
+  set_mode("regression")
+# Step 4: Create workflow, add recipe, add model
+ct_wflow <-workflows::workflow() %>%
+  workflows::add_recipe(rec) %>%
+  workflows::add_model(lm_ct_model)
+# Step 5: Fit workflow
+ct_wflow_fit <- parsnip::fit(ct_wflow, data = train_ct)
+# Step 6: Get predictions
+mpg_pred_train <- 
+  predict(ct_wflow_fit, train_ct) %>%
+  bind_cols(train_ct %>% select(mpg))
+# Step 7: Use predictions to get performance metrics
+yardstick::metrics(mpg_pred_train, 
+                 truth = mpg, estimate = .pred)
+# Now let's assume we were satisfied with this model, we will see what the performance is with the test data
+ct_test_fit <- parsnip::fit(ct_wflow, data = test_ct)
+mpg_pred_test <- 
+  predict(ct_test_fit, test_ct) %>%
+  bind_cols(test_ct %>% select(mpg))
+yardstick::metrics(mpg_pred_test, 
+                 truth = mpg, estimate = .pred)
+```
+<div data-iframe-height></div>

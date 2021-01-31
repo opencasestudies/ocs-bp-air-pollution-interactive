@@ -10,6 +10,11 @@ runtime: shiny_prerendered
 library(learnr)
 library(tidyverse)
 library(rnaturalearth)
+library(rnaturalearthdata)
+library(sf)
+library(rgeos)
+library(lwgeom)
+library(maps)
 knitr::opts_chunk$set(echo = FALSE)
 # Recall how we created a plot that is mostly limited to the outline of the US. According to [Wikipedia](https://en.wikipedia.org/wiki/List_of_extreme_points_of_Canada), latitude and longitude bounds of mainland Canada are about: 
 # top = 72 # north lat
